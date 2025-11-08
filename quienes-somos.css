@@ -1,0 +1,68 @@
+/* --- ESTILOS PARA LA PÁGINA "QUIENES SOMOS" --- */
+
+/* Contenedor principal para el texto */
+.content-wrapper-about {
+    padding-top: 120px; 
+    padding-bottom: 6rem;
+    max-width: 800px; 
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.about-title {
+    font-family: var(--font-titulos);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--acento-primario); /* CAMBIO */
+    border-bottom: 1px solid var(--color-borde);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.about-text p {
+    font-family: var(--font-cuerpo);
+    font-size: 1.2rem; 
+    line-height: 1.8;
+    color: var(--color-texto-sec);
+    margin-bottom: 2rem;
+}
+
+.about-text p strong {
+    color: var(--color-acento-naranja); /* CAMBIO: Resaltado en naranja */
+    font-weight: 400; 
+}
+
+/* Estilo de las citas dentro del texto */
+.about-text blockquote {
+    font-family: var(--font-titulos);
+    font-style: italic;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: var(--color-texto);
+    border-left: 4px solid var(--acento-primario); /* CAMBIO */
+    padding-left: 2rem;
+    margin: 3rem 1rem; 
+}
+
+/* CAMBIO: Colores de borde distintos para cada cita */
+.about-text blockquote:nth-of-type(1) {
+    border-left-color: var(--color-acento-azul);
+}
+.about-text blockquote:nth-of-type(2) {
+    border-left-color: var(--color-acento-rojo);
+}
+.about-text blockquote:nth-of-type(3) {
+    border-left-color: var(--color-acento-verde);
+}
+
+
+.about-text blockquote cite {
+    display: block;
+    font-family: var(--font-cuerpo);
+    font-size: 1rem;
+    color: var(--color-texto-sec);
+    margin-top: 1rem;
+    font-style: normal;
+}

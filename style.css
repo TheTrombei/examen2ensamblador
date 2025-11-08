@@ -1,0 +1,767 @@
+/* --- Variables de Color (¡PALETA ACTUALIZADA!) --- */
+:root {
+    --color-fondo: #101012;
+    --color-fondo-alt: #1A1A1C;
+    /* CAMBIO: Texto a blanco puro y secundario más claro para más contraste */
+    --color-texto: #FFFFFF; 
+    --color-texto-sec: #B0B0B0;
+    --color-borde: #333333;
+    
+    /* ¡NUEVO! Paleta de acentos con más variedad */
+    --color-acento-rojo: #D94444;    /* (Pizarnik) Rojo más vibrante */
+    --color-acento-azul: #3A7CA5;    /* (Plath) Se mantiene */
+    --color-acento-verde: #5B8E7D;   /* (Ibargüengoitia) */
+    --color-acento-naranja: #D9822B; /* (Benedetti) */
+    --color-acento-teal: #2A8D8D;    /* (Vilariño) */
+    
+    /* --- Acentos primario y secundario para UI --- */
+    --acento-primario: var(--color-acento-rojo);
+    --acento-secundario: var(--color-acento-azul);
+    
+    --font-titulos: 'Playfair Display', serif;
+    --font-cuerpo: 'Inter', sans-serif;
+}
+
+/* --- Reseteo Básico --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--font-cuerpo);
+    font-weight: 300;
+    line-height: 1.7;
+}
+/* Previene el scroll del body cuando el menú está abierto */
+body.nav-open {
+    overflow: hidden;
+}
+
+/* --- Header Fijo (Efecto cristal futurista) --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    z-index: 100;
+    background: rgba(16, 16, 18, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-borde);
+    height: 80px; /* Coincide con clip-path del slide */
+}
+.logo {
+    font-family: var(--font-titulos);
+    font-size: 1.5rem; 
+    font-weight: 700;
+    color: var(--color-texto);
+}
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+.main-nav a {
+    font-family: var(--font-cuerpo);
+    color: var(--color-texto);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+.main-nav a:hover {
+    color: var(--acento-primario); /* CAMBIO */
+}
+
+/* Botón de Inicia Sesión en el Nav */
+.nav-login-btn {
+    background: transparent;
+    border: 1px solid var(--acento-primario); /* CAMBIO */
+    color: var(--acento-primario); /* CAMBIO */
+    font-family: var(--font-cuerpo);
+    font-weight: 400;
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+    margin-left: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.nav-login-btn:hover {
+    background: var(--acento-primario); /* CAMBIO */
+    color: var(--color-fondo);
+}
+
+/* --- Botón de Hamburguesa --- */
+.hamburger-btn {
+    display: none; /* Oculto en desktop */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 151; /* Por encima del overlay */
+}
+.hamburger-btn span {
+    width: 30px;
+    height: 3px;
+    background: var(--color-texto);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+/* Animación a "X" */
+.hamburger-btn.open span:nth-child(1) {
+    background: var(--acento-primario); /* CAMBIO: Color en X */
+    transform: rotate(45deg) translate(6px, 6px);
+}
+.hamburger-btn.open span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-btn.open span:nth-child(3) {
+    background: var(--acento-primario); /* CAMBIO: Color en X */
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* --- Panel de Navegación Móvil --- */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 80px; /* Debajo del header */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: var(--color-fondo-alt);
+    z-index: 150;
+    
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+.mobile-nav-overlay.open {
+    transform: translateX(0);
+}
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.mobile-nav-links a {
+    font-family: var(--font-titulos);
+    font-size: 2rem;
+    color: var(--color-texto);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.mobile-nav-links a:hover {
+    color: var(--acento-primario); /* CAMBIO */
+}
+/* Botón de login dentro del menú móvil */
+.mobile-nav-links .nav-login-btn {
+    font-size: 1.2rem;
+    padding: 0.8rem;
+    margin-left: 0;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+
+/* --- SECCIÓN 1: CARRUSEL HERO (IMAGEN CONFINADA) --- */
+.hero-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    height: 100vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.hero-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.slide {
+    flex: 0 0 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 5%;
+    gap: 3rem;
+    overflow: hidden; 
+    clip-path: inset(80px 0 80px 0); 
+}
+
+/* Fondos con gradiente sutil */
+#slide-1 { 
+    background: radial-gradient(circle at 90% 20%, rgba(217, 68, 68, 0.15), var(--color-fondo) 40%); /* CAMBIO: Color más vibrante */
+}
+#slide-2 { 
+    background: radial-gradient(circle at 90% 20%, rgba(58, 124, 165, 0.15), var(--color-fondo) 40%); 
+}
+#slide-3 { 
+    background: radial-gradient(circle at 90% 20%, rgba(91, 142, 125, 0.15), var(--color-fondo) 40%); 
+}
+#slide-4 { 
+    background: radial-gradient(circle at 90% 20%, rgba(217, 130, 43, 0.15), var(--color-fondo) 40%); 
+}
+#slide-5 { 
+    background: radial-gradient(circle at 90% 20%, rgba(42, 141, 141, 0.15), var(--color-fondo) 40%); 
+}
+
+
+/* --- CONTENEDOR DE TEXTO --- */
+.slide-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    max-width: 600px;
+    padding-right: 2rem;
+}
+
+.slide-content .pre-title {
+    font-family: var(--font-cuerpo);
+    font-size: 0.9rem;
+    color: var(--color-acento-rojo); /* CAMBIO */
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+#slide-2 .pre-title { color: var(--color-acento-azul); } /* CAMBIO */
+#slide-3 .pre-title { color: var(--color-acento-verde); } /* CAMBIO */
+#slide-4 .pre-title { color: var(--color-acento-naranja); } /* CAMBIO */
+#slide-5 .pre-title { color: var(--color-acento-teal); } /* CAMBIO */
+
+.slide-title {
+    font-family: var(--font-titulos);
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-texto);
+    margin-bottom: 1.8rem;
+}
+
+.slide-content blockquote {
+    font-family: var(--font-titulos);
+    font-style: italic;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: var(--color-texto-sec);
+    border-left: 4px solid var(--acento-primario); /* CAMBIO */
+    padding-left: 1.8rem;
+    margin: 2rem 0;
+    max-width: 520px;
+    font-weight: 400;
+}
+
+.cta-button {
+    align-self: flex-start;
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    background: var(--acento-primario); /* CAMBIO */
+    color: var(--color-fondo);
+    border: 1px solid var(--acento-primario); /* CAMBIO */
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-family: var(--font-cuerpo);
+    font-weight: 400;
+}
+
+.cta-button:hover {
+    background: transparent;
+    color: var(--acento-primario); /* CAMBIO */
+}
+
+/* --- CONTENEDOR DE IMAGEN (CONFINADA) --- */
+.slide-image {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    transition: transform 0.4s ease;
+}
+
+/* Posicionamiento específico por imagen */
+#slide-1 .slide-image img { object-position: 70% center; }
+#slide-2 .slide-image img { object-position: 50% center; }
+#slide-3 .slide-image img { object-position: 60% center; }
+#slide-4 .slide-image img { object-position: 50% center; }
+#slide-5 .slide-image img { object-position: 50% 30%; }
+
+
+.slide-image img:hover {
+    transform: scale(1.02);
+}
+
+/* --- Indicador de Scroll (LÍMITE INFERIOR) --- */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    font-family: var(--font-cuerpo);
+    font-size: 0.8rem;
+    color: var(--color-texto-sec);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: bounce 2s infinite ease-in-out;
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+    40% { transform: translate(-50%, -10px); }
+    60% { transform: translate(-50%, -5px); }
+}
+
+/* --- Contenido Principal (Debajo del Hero) --- */
+.main-content-wrapper {
+    position: relative;
+    z-index: 10;
+    background: var(--color-fondo);
+}
+.content-section {
+    padding: 6rem 10%;
+    border-bottom: 1px solid var(--color-borde);
+}
+.alternate-bg {
+    background-color: var(--color-fondo-alt);
+}
+.text-center { text-align: center; }
+.section-title {
+    font-family: var(--font-titulos);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--acento-primario); /* CAMBIO */
+    margin-bottom: 3rem;
+    text-align: center;
+}
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--color-texto-sec);
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+}
+.manifesto-quote {
+    font-family: var(--font-titulos);
+    font-style: italic;
+    font-size: 1.8rem;
+    color: var(--color-texto);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Grid de Categorías --- */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.category-card {
+    background: var(--color-fondo-alt);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--acento-primario); /* CAMBIO */
+}
+.category-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+.category-card:hover img {
+    opacity: 1;
+}
+.category-card h3 {
+    font-family: var(--font-titulos);
+    font-size: 1.8rem;
+    margin: 1.5rem 0;
+}
+.category-card .cta-button {
+    margin-bottom: 2rem;
+}
+
+/* --- Layout 2 Columnas (Club) --- */
+.two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+.column-text h3 {
+    font-family: var(--font-titulos);
+    font-size: 2rem;
+    color: var(--acento-secundario); /* CAMBIO */
+    margin-bottom: 1.5rem;
+}
+.column-text p {
+    color: var(--color-texto-sec);
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+}
+.column-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* --- Blog Grid --- */
+.blog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+.blog-card {
+    background: var(--color-fondo-alt);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 2rem;
+}
+.blog-card h3 {
+    font-family: var(--font-titulos);
+    font-size: 1.5rem;
+    color: var(--color-texto);
+    margin-bottom: 1rem;
+}
+.blog-card p {
+    color: var(--color-texto-sec);
+    margin-bottom: 1.5rem;
+}
+.blog-card a {
+    color: var(--acento-primario); /* CAMBIO */
+    text-decoration: none;
+    font-weight: 400;
+}
+
+/* --- Estilos del Modal (Pop-up) Club --- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.modal-content {
+    position: relative;
+    padding: 2.5rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    background: rgba(30, 30, 32, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: var(--color-texto-sec);
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+.modal-close:hover {
+    color: var(--color-texto);
+}
+.modal-content h3 {
+    font-family: var(--font-titulos);
+    font-size: 2rem;
+    color: var(--acento-primario); /* CAMBIO */
+    margin-bottom: 1rem;
+}
+.modal-content p {
+    color: var(--color-texto-sec);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+.modal-form {
+    width: 100%;
+}
+.modal-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-texto-sec);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.modal-form input[type="email"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: 5px;
+    color: var(--color-texto);
+    font-family: var(--font-cuerpo);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+.modal-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--acento-primario); /* CAMBIO */
+}
+.modal-form .cta-button {
+    width: 100%;
+}
+
+/* --- Botones CTA (Futurista/Poético) --- */
+.cta-button {
+    display: inline-block;
+    text-decoration: none;
+    font-family: var(--font-cuerpo);
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--acento-primario); /* CAMBIO */
+    background: var(--acento-primario); /* CAMBIO */
+    color: var(--color-fondo);
+    cursor: pointer;
+}
+.cta-button:hover {
+    background: transparent;
+    color: var(--acento-primario); /* CAMBIO */
+}
+.cta-button.secondary {
+    background: transparent;
+    color: var(--acento-primario); /* CAMBIO */
+    border-color: var(--acento-primario); /* CAMBIO */
+}
+.cta-button.secondary:hover {
+    background: var(--acento-primario); /* CAMBIO */
+    color: var(--color-fondo);
+}
+
+/* --- ESTILOS PARA EL MODAL DE LOGIN (Global) --- */
+.login-modal-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.login-modal-content {
+    position: relative;
+    padding: 2.5rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 450px; /* Más angosto que el modal del club */
+    background: rgba(30, 30, 32, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.login-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: var(--color-texto-sec);
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    line-height: 1;
+    background: none;
+    border: none;
+}
+.login-modal-close:hover {
+    color: var(--color-texto);
+}
+
+.login-modal-content h3 {
+    font-family: var(--font-titulos);
+    font-size: 2rem;
+    color: var(--acento-primario); /* CAMBIO */
+    margin-bottom: 1rem;
+}
+
+.login-modal-content p {
+    color: var(--color-texto-sec);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.login-form {
+    width: 100%;
+    text-align: left;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-texto-sec);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: 5px;
+    color: var(--color-texto);
+    font-family: var(--font-cuerpo);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+.login-form input:focus {
+    outline: none;
+    border-color: var(--acento-primario); /* CAMBIO */
+}
+
+.login-form .cta-button {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.login-form .cta-button.secondary {
+    width: 100%;
+}
+
+/* --- Footer --- */
+.main-footer {
+    padding: 3rem 5%;
+    text-align: center;
+    border-top: 1px solid var(--color-borde);
+    color: var(--color-texto-sec);
+    font-size: 0.9rem;
+}
+
+/* --- RESPONSIVE: Ajuste para móviles --- */
+@media (max-width: 900px) { /* Breakpoint unificado a 900px */
+    
+    /* Oculta nav de escritorio y muestra hamburguesa */
+    .main-nav {
+        display: none; 
+    }
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .slide {
+        grid-template-columns: 1fr;
+        padding: 0 8%;
+        clip-path: inset(80px 0 100px 0); /* Más espacio abajo en móvil */
+        position: relative;
+    }
+    
+    /* Estilos para la imagen de fondo en móvil */
+    .slide-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0.3; /* Imagen sutil de fondo */
+        object-fit: cover;
+        display: flex; /* Vuelve a mostrarla */
+    }
+    
+    .slide-image img {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .slide-content {
+        max-width: 100%;
+        text-align: center;
+        padding-right: 0;
+        position: relative;
+        z-index: 2;
+        background: rgba(16, 16, 18, 0.5); 
+        backdrop-filter: blur(4px); 
+        padding: 2rem 1.5rem;
+        border-radius: 8px;
+    }
+
+    /* Efecto "contorneado" (sombra) para el texto */
+    .slide-title {
+        text-shadow: 0 0 10px rgba(0,0,0,1);
+    }
+    .slide-content blockquote {
+        text-shadow: 0 0 8px rgba(0,0,0,1);
+    }
+
+    .cta-button {
+        align-self: center;
+    }
+
+    .scroll-indicator {
+        bottom: 1.5rem;
+    }
+
+    /* Layouts de 2 columnas (Club) */
+    .two-column-layout {
+        grid-template-columns: 1fr;
+    }
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+}

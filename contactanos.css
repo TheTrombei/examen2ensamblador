@@ -1,0 +1,134 @@
+/* --- ESTILOS PARA LA PÁGINA "CONTACTÁNOS" --- */
+
+/* Contenedor principal de 2 columnas */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 3rem;
+    
+    padding: 120px 5% 6rem 5%; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-title {
+    font-family: var(--font-titulos);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--acento-primario); /* CAMBIO */
+    margin-bottom: 1rem;
+}
+
+.contact-subtitle {
+    font-family: var(--font-cuerpo);
+    font-size: 1.1rem;
+    color: var(--color-texto-sec);
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    max-width: 90%;
+}
+
+/* --- Formulario de Contacto --- */
+.contact-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-texto-sec);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Estilo unificado para inputs y textarea */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: var(--color-fondo-alt);
+    border: 1px solid var(--color-borde);
+    border-radius: 5px;
+    color: var(--color-texto);
+    font-family: var(--font-cuerpo);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--acento-primario); /* CAMBIO */
+}
+
+.contact-form .cta-button {
+    width: auto; 
+    cursor: pointer;
+}
+
+/* --- Barra lateral de Información --- */
+.contact-info {
+    background-color: var(--color-fondo-alt);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 2rem;
+    height: fit-content; 
+    position: sticky; 
+    top: 120px; 
+}
+
+.contact-info h3 {
+    font-family: var(--font-titulos);
+    font-size: 1.5rem;
+    color: var(--acento-primario); /* CAMBIO */
+    margin-bottom: 0.75rem;
+}
+
+.contact-info p {
+    font-family: var(--font-cuerpo);
+    font-size: 1rem;
+    color: var(--color-texto-sec);
+    line-height: 1.6;
+    margin-bottom: 0.5rem; 
+}
+
+/* Separador para los títulos de info */
+.info-title-separator {
+    border-top: 1px solid var(--color-borde);
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* CAMBIO: Dando color a los títulos de la info */
+.contact-info h3:nth-of-type(2) {
+    color: var(--color-acento-naranja);
+}
+.contact-info h3:nth-of-type(3) {
+    color: var(--color-acento-teal);
+}
+
+
+/* --- Media Query para Móviles --- */
+@media (max-width: 900px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        padding-top: 100px;
+    }
+    
+    .contact-info {
+        position: static; 
+        grid-row: 1; 
+        margin-bottom: 2rem;
+    }
+
+    .contact-main {
+        grid-row: 2;
+    }
+}

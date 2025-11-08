@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | La Librería de Cuévano</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        .logo-link {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <a href="index.html" class="logo-link">
+            <div class="logo">La Librería de Cuévano</div>
+        </a>
+        
+        <!-- Navegación de Escritorio -->
+        <nav class="main-nav">
+            <a href="libros.html">Libros</a>
+            <a href="blog.html" style="color: var(--color-acento-1);">Blog</a>
+            <a href="quienes-somos.html">Quienes Somos</a>
+            <a href="contactanos.html">Contáctanos</a>
+            <button id="nav-login-btn" class="nav-login-btn">Inicia Sesión</button>
+        </nav>
+        
+        <!-- ¡NUEVO! Botón de Hamburguesa -->
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+    
+    <!-- ¡NUEVO! Panel de Navegación Móvil -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <nav class="mobile-nav-links">
+            <a href="libros.html">Libros</a> 
+            <a href="blog.html">Blog</a>
+            <a href="quienes-somos.html">Quienes Somos</a>
+            <a href="contactanos.html">Contáctanos</a>
+            <button id="nav-login-btn-mobile" class="nav-login-btn">Inicia Sesión</button>
+        </nav>
+    </div>
+
+    <!-- Contenido del Artículo -->
+    <div class="article-wrapper">
+        
+        <!-- ¡NUEVO! Botón para volver al blog -->
+        <a href="blog.html" class="back-to-blog-link">
+            &larr; Volver a La Cifra Oscura
+        </a>
+
+        <header class="article-header">
+            <!-- Título y metadatos se cargarán con JS -->
+            <h1 class="article-title" id="article-title">Cargando título...</h1>
+            <div class="article-meta">
+                Por <span id="article-meta-author"></span>
+                el <span id="article-meta-date"></span>
+            </div>
+        </header>
+
+        <!-- Cuerpo principal del artículo -->
+        <div class="article-body" id="article-body-content">
+            <!-- El contenido del artículo se cargará aquí -->
+            <p>Cargando contenido...</p>
+        </div>
+
+        <!-- Sección para participar/comentar -->
+        <section class="participate-section">
+            <h2>Participa en la Discusión</h2>
+            <p>Para dejar un comentario, unirte al debate o proponer tu propio análisis, necesitas ser miembro de la comunidad de Cuévano.</p>
+            <button id="open-login-modal" class="cta-button">Únete para participar</button>
+        </section>
+    </div>
+
+    <!-- MODAL DE INICIO DE SESIÓN / REGISTRO -->
+    <div id="login-modal" class="login-modal-overlay">
+        <div class="login-modal-content">
+            <button id="close-login-modal" class="login-modal-close">&times;</button>
+            <h3>Únete a La Cifra Oscura</h3>
+            <p>Inicia sesión o regístrate para ser parte de la comunidad, guardar tus libros favoritos y participar en las discusiones.</p>
+            
+            <form class="login-form">
+                <label for="login-email">Correo Electrónico</label>
+                <input type="email" id="login-email" name="email" required>
+                
+                <label for="login-pass">Contraseña</label>
+                <input type="password" id="login-pass" name="password" required>
+                
+                <button type="submit" class="cta-button">Iniciar Sesión</button>
+                <button type="button" class="cta-button secondary">Registrarse</button>
+            </form>
+        </div>
+    </div>
+    <!-- Fin del Modal -->
+
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>La Librería de Cuévano © 2025 | Literatura para el alma futura.</p>
+    </footer>
+
+    <!-- SCRIPT GLOBAL DE NAVEGACIÓN (para hamburguesa y login) -->
+    <script id="global-nav-script">
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. Lógica del Menú Hamburguesa ---
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+            
+            if(hamburgerBtn && mobileNavOverlay) {
+                hamburgerBtn.addEventListener('click', () => {
+                    hamburgerBtn.classList.toggle('open');
+                    mobileNavOverlay.classList.toggle('open');
+                    document.body.classList.toggle('nav-open');
+                });
+            }
+
+            // --- 2. Lógica del Modal de Login (para botones de nav) ---
+            // ¡OJO! Aquí el querySelectorAll es diferente
+            const openLoginModalBtns = document.querySelectorAll('#nav-login-btn, #nav-login-btn-mobile, #open-login-modal');
+            const closeLoginModalBtn = document.getElementById('close-login-modal');
+            const loginModal = document.getElementById('login-modal');
+
+            if (loginModal) {
+                // Abrir modal
+                openLoginModalBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        loginModal.style.display = 'flex';
+                        // Si el menú móvil está abierto, cerrarlo
+                        if (mobileNavOverlay && mobileNavOverlay.classList.contains('open')) {
+                            hamburgerBtn.classList.remove('open');
+                            mobileNavOverlay.classList.remove('open');
+                            document.body.classList.remove('nav-open');
+                        }
+                    });
+                });
+                // Cerrar con 'x'
+                closeLoginModalBtn.addEventListener('click', () => {
+                    loginModal.style.display = 'none';
+                });
+                // Cerrar haciendo clic fuera
+                loginModal.addEventListener('click', (e) => {
+                    if (e.target === loginModal) {
+                        loginModal.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- SCRIPT PARA CARGAR ARTÍCULO -->
+    <script>
+        // --- BASE DE DATOS DE ARTÍCULOS (SIMULADA) ---
+        const postDatabase = {
+            'plath': {
+                title: "El arte de morir: La intensidad de 'Ariel' de Sylvia Plath",
+                author: "La Cifra Oscura",
+                date: "7 de noviembre, 2025",
+                content: `
+                    <p>Pocos poemarios queman con la intensidad de 'Ariel'. Escrito en los últimos y febriles meses de su vida, el libro póstumo de Sylvia Plath no es solo una confesión; es una transfiguración. Plath toma el material autobiográfico de su dolor, su ira y su desesperación, y lo funde en un lenguaje mítico, creando una obra que trasciende la simple catarsis.</p>
+                    
+                    <figure>
+                        <img src="https://cdn.zendalibros.com/wp-content/uploads/2018/01/sylvia-plath.jpg" alt="Sylvia Plath escribiendo">
+                        <figcaption>Sylvia Plath en su escritorio, circa 1962.</figcaption>
+                    </figure>
+
+                    <p>Desde el arranque feroz de "Daddy" hasta la escalofriante calma de "Edge", Plath controla su material con una precisión técnica asombrosa. La violencia de las imágenes (hornos, ganchos, sangre) no es gratuita; es la herramienta necesaria para diseccionar la experiencia de ser mujer, hija y artista en un mundo que busca reducirla.</p>
+
+                    <blockquote>
+                        "Y yo soy la flecha,
+                        el rocío que vuela,
+                        suicida, en uno con el impulso
+                        hacia el ojo rojo,
+                        el caldero del alba."
+                        <cite>— Sylvia Plath, "Ariel"</cite>
+                    </blockquote>
+
+                    <p>Leer 'Ariel' no es un acto pasivo. Es ser testigo de una mente brillante en el punto álgido de su poder creativo, forjando arte desde el centro mismo del sufrimiento. Es, como ella misma escribió, un arte excepcional.</p>
+                `
+            },
+            'benedetti': {
+                title: "'La Tregua': La melancolía de lo cotidiano en Mario Benedetti",
+                author: "La Cifra Oscura",
+                date: "5 de noviembre, 2025",
+                content: `
+                    <p>Mario Benedetti nunca necesitó de grandes tragedias épicas. Su genio residía en encontrar lo trascendente en lo gris, en la rutina de la oficina y en los cafés de Montevideo. 'La Tregua', escrita en forma de diario, es quizás el ejemplo más puro de esto.</p>
+                    
+                    <p>Seguimos a Martín Santomé, un hombre viudo a punto de jubilarse, cuya vida es un inventario de días idénticos. Su existencia es una "zona gris", un espacio de espera entre deberes cumplidos y la nada. Y entonces, ocurre lo inesperado: el amor, en la figura de la joven Laura Avellaneda.</p>
+
+                    <blockquote>
+                        "Lo que más me gusta de ella es su seriedad. Y lo que más me atrae, su ternura. 
+                        Pero la palabra clave es 'tregua'. ¿Por qué tregua? Porque la vida de Santomé es una guerra sorda contra la soledad y el tiempo."
+                        <cite>— Extracto de 'La Tregua'</cite>
+                    </blockquote>
+                    
+                    <figure>
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5MDq-hBUxyQJpgzmMZyORc06jnHbBCEpYUu0-lUdz48yqlPyMEXCs1OAlGNzPZHN377Gh6fpoO_0zf5dYm-FrTOr65HNgq81jtLbsi8HofARXipljUGf3Ch6IVnOoPBEjaipW60FGoGtm/s1600/15288663_1166271456788776_101294473216791306_o.jpg" alt="Café en Montevideo">
+                        <figcaption>La novela captura la atmósfera de los cafés y oficinas de Montevideo.</figcaption>
+                    </figure>
+
+                    <p>Benedetti nos regala una historia profundamente humana sobre la segunda oportunidad. Es una novela sobre la tristeza de la vida que "pasa de largo", pero también sobre la capacidad del ser humano para encontrar una "tregua", un breve, brillante e inolvidable paréntesis de felicidad, incluso cuando el final es inevitablemente melancólico.</p>
+                `
+            },
+            'vilarino': {
+                title: "'Ya no': La poética del adiós en Idea Vilariño",
+                author: "La Cifra Oscura",
+                date: "3 de noviembre, 2025",
+                content: `
+                    <p>Si la poesía de Pizarnik es un descenso a la noche y la de Plath una explosión, la de Idea Vilariño es un corte limpio. Sus 'Poemas de Amor' son una colección de heridas expuestas, escritas con una economía de lenguaje que desarma.</p>
+
+                    <p>Dirigidos en su mayoría al escritor Juan Carlos Onetti, estos poemas trazan el mapa de una relación imposible, marcada por la ausencia y la certeza del fin. Vilariño no adorna el dolor; lo nombra. Y al nombrarlo, le da una dignidad universal.</p>
+
+                    <blockquote>
+                        "Ya no será
+                        ya no
+                        no viviremos juntos
+                        no criaré a tu hijo
+                        no coseré tu ropa
+                        no te tendré de noche."
+                        <cite>— Idea Vilariño, "Ya no"</cite>
+                    </blockquote>
+
+                    <p>El poema "Ya no" es quizás el epítome de su estilo: una letanía de negaciones que, paradójicamente, construye la imagen más clara de todo lo que se perdió. Es una poesía que duele por su precisión. Vilariño nos enseña que el adiós también es una forma de literatura, y una de las más honestas.</p>
+                `
+            }
+        };
+
+        // --- LÓGICA PARA CARGAR EL ARTÍCULO ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const postKey = params.get('post');
+            
+            const post = postDatabase[postKey];
+
+            if (post) {
+                // Cambiar el título de la página
+                document.title = `${post.title} | La Librería de Cuévano`;
+                
+                // Inyectar el contenido
+                document.getElementById('article-title').textContent = post.title;
+                document.getElementById('article-meta-author').textContent = post.author;
+                document.getElementById('article-meta-date').textContent = post.date;
+                document.getElementById('article-body-content').innerHTML = post.content;
+            } else {
+                // Post no encontrado
+                document.getElementById('article-title').textContent = "Artículo no encontrado";
+                document.getElementById('article-body-content').innerHTML = "<p>El artículo que buscas no existe o ha sido movido. <a href='blog.html' style='color: var(--color-acento-1)'>Volver al blog</a>.</p>";
+            }
+        });
+    </script>
+</body>
+</html>
