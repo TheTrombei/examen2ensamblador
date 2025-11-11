@@ -11,7 +11,7 @@
     font-family: var(--font-titulos);
     font-size: 3.5rem;
     font-weight: 700;
-    color: var(--acento-primario); /* CAMBIO */
+    color: var(--acento-primario); 
     margin-bottom: 0.5rem;
     text-align: center;
 }
@@ -48,7 +48,7 @@
 .blog-list-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    border-color: var(--acento-primario); /* CAMBIO */
+    border-color: var(--acento-primario); 
 }
 
 .blog-item-image img {
@@ -68,7 +68,6 @@
     margin-bottom: 1rem;
     line-height: 1.3;
 }
-/* CAMBIO: Colores variados para los títulos */
 .blog-list-item:nth-child(1) .blog-item-content h3:hover { color: var(--color-acento-azul); }
 .blog-list-item:nth-child(2) .blog-item-content h3:hover { color: var(--color-acento-naranja); }
 .blog-list-item:nth-child(3) .blog-item-content h3:hover { color: var(--color-acento-teal); }
@@ -85,7 +84,7 @@
 .read-more {
     font-family: var(--font-cuerpo);
     font-weight: 400;
-    color: var(--acento-primario); /* CAMBIO */
+    color: var(--acento-primario); 
     text-decoration: none;
 }
 
@@ -112,7 +111,7 @@
 }
 
 .back-to-blog-link:hover {
-    color: var(--acento-primario); /* CAMBIO */
+    color: var(--acento-primario); 
 }
 
 
@@ -140,9 +139,18 @@
 }
 
 .article-meta span {
-    color: var(--color-acento-teal); /* CAMBIO: Meta info en teal */
+    color: var(--color-acento-teal); 
     font-weight: 400;
 }
+
+/* Estilo para el reproductor de audio nativo */
+.article-audio-player {
+    width: 100%;
+    margin-top: 2.5rem;
+    /* Aplica un filtro para que coincida con el tema oscuro */
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg) brightness(0.7) contrast(1.1);
+}
+
 
 /* Cuerpo del artículo */
 .article-body p {
@@ -152,7 +160,7 @@
     color: var(--color-texto-sec);
     margin-bottom: 2rem;
 }
-.article-body p a { /* CAMBIO: Estilo para enlaces en el artículo */
+.article-body p a { 
     color: var(--color-acento-azul);
     text-decoration: none;
     border-bottom: 1px dotted var(--color-acento-azul);
@@ -168,7 +176,7 @@
     font-size: 1.8rem;
     line-height: 1.6;
     color: var(--color-texto);
-    border-left: 4px solid var(--acento-primario); /* CAMBIO */
+    border-left: 4px solid var(--acento-primario); 
     padding-left: 2rem;
     margin: 3rem 1rem;
 }
@@ -213,7 +221,7 @@
 .participate-section h2 {
     font-family: var(--font-titulos);
     font-size: 2rem;
-    color: var(--acento-primario); /* CAMBIO */
+    color: var(--acento-primario); 
     margin-bottom: 1rem;
 }
 
@@ -228,7 +236,7 @@
 }
 
 /* --- Media Queries para Blog/Artículo --- */
-@media (max-width: 900px) { /* Breakpoint unificado */
+@media (max-width: 900px) { 
     .blog-list-item {
         grid-template-columns: 1fr;
     }

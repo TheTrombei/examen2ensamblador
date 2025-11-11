@@ -30,7 +30,7 @@
 
 /* Botón para cerrar filtros en móvil */
 .close-filters-btn {
-    display: none; /* Oculto en desktop */
+    display: none; 
     position: absolute;
     top: 1rem;
     right: 1.5rem;
@@ -59,13 +59,12 @@
     font-family: var(--font-cuerpo);
     font-weight: 400;
     font-size: 1.1rem;
-    color: var(--acento-primario); /* CAMBIO */
+    color: var(--acento-primario); 
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* CAMBIO: Color del título del segundo filtro para más variedad */
 .filter-group:nth-of-type(2) h4 {
     color: var(--color-acento-naranja);
 }
@@ -100,8 +99,8 @@
 }
 
 .filter-option input[type="checkbox"]:checked {
-    background-color: var(--acento-primario); /* CAMBIO */
-    border-color: var(--acento-primario); /* CAMBIO */
+    background-color: var(--acento-primario); 
+    border-color: var(--acento-primario); 
 }
 
 .filter-option input[type="checkbox"]:checked::after {
@@ -124,11 +123,10 @@
 
 /* Botón para mostrar filtros en móvil */
 .mobile-filter-btn {
-    display: none; /* Oculto en desktop */
+    display: none; 
     margin-bottom: 2rem;
     width: 100%;
 }
-/* Re-usamos el estilo de cta-button pero lo hacemos secundario */
 .mobile-filter-btn {
     font-family: var(--font-cuerpo);
     font-weight: 400;
@@ -138,11 +136,11 @@
     transition: all 0.3s ease;
     cursor: pointer;
     background: transparent;
-    color: var(--acento-primario); /* CAMBIO */
-    border: 1px solid var(--acento-primario); /* CAMBIO */
+    color: var(--acento-primario); 
+    border: 1px solid var(--acento-primario); 
 }
 .mobile-filter-btn:hover {
-    background: var(--acento-primario); /* CAMBIO */
+    background: var(--acento-primario); 
     color: var(--color-fondo);
 }
 
@@ -176,7 +174,7 @@
 .book-card-store:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    border-color: var(--acento-primario); /* CAMBIO */
+    border-color: var(--acento-primario); 
 }
 
 .book-card-store img {
@@ -206,7 +204,7 @@
 .book-card-store .price {
     font-size: 1.1rem;
     font-weight: 400;
-    color: var(--color-acento-naranja); /* CAMBIO: Precio en naranja */
+    color: var(--color-acento-naranja); 
 }
 
 .no-results {
@@ -271,6 +269,11 @@
     height: auto;
     border-radius: 8px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    cursor: pointer; /* ¡NUEVO! Indica que se puede hacer clic */
+    transition: transform 0.3s ease;
+}
+.book-modal-image img:hover {
+    transform: scale(1.03);
 }
 
 .book-modal-details h2 {
@@ -283,7 +286,7 @@
 .book-modal-details h3 {
     font-family: var(--font-titulos);
     font-size: 1.5rem;
-    color: var(--acento-primario); /* CAMBIO */
+    color: var(--acento-primario); 
     margin-bottom: 1.5rem;
     font-style: italic;
 }
@@ -309,7 +312,7 @@
 }
 
 .book-meta-list li strong {
-    color: var(--color-acento-azul); /* CAMBIO: Detalles en azul */
+    color: var(--color-acento-azul); 
     margin-right: 0.5rem;
 }
 
@@ -317,6 +320,30 @@
     width: 100%;
     text-align: center;
 }
+
+/* --- ¡NUEVO! Estilos para el Lightbox de la Imagen --- */
+.image-lightbox-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 250; /* Por encima del modal de libro */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+    cursor: pointer;
+}
+
+.image-lightbox-content {
+    display: block;
+    max-width: 90vw;
+    max-height: 90vh;
+    box-shadow: 0 0 40px rgba(224, 26, 131, 0.5); /* Brillo fucsia */
+}
+
 
 /* --- Media Query para Móviles --- */
 @media (max-width: 900px) {

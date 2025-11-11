@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-    
+        
     <style>
         .logo-link {
             text-decoration: none;
@@ -30,12 +30,12 @@
         <nav class="main-nav">
             <a href="libros.html">Libros</a>
             <a href="blog.html">Blog</a>
-            <a href="quienes-somos.html" style="color: var(--color-acento-1);">Quienes Somos</a>
+            <a href="quienes-somos.html" style="color: var(--acento-primario);">Quienes Somos</a>
             <a href="contactanos.html">Contáctanos</a>
             <button id="nav-login-btn" class="nav-login-btn">Inicia Sesión</button>
         </nav>
         
-        <!-- ¡NUEVO! Botón de Hamburguesa -->
+        <!-- Botón de Hamburguesa -->
         <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú">
             <span></span>
             <span></span>
@@ -43,7 +43,7 @@
         </button>
     </header>
     
-    <!-- ¡NUEVO! Panel de Navegación Móvil -->
+    <!-- Panel de Navegación Móvil -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
         <nav class="mobile-nav-links">
             <a href="libros.html">Libros</a> 
@@ -69,7 +69,7 @@
                 <cite>— Sylvia Plath</cite>
             </blockquote>
 
-            <p>En nuestros estantes no encontrarás solo *best-sellers* fáciles. Encontrarás la densidad filosófica, el laberinto metafísico de Borges, la honestidad brutal de Idea Vilariño y el humor ácido de Ibargüengoitia, nuestro paisano. Creemos que hay un valor inmenso en confrontar la complejidad de la existencia, en leer a autores que, como nosotros, han mirado al abismo.</p>
+            <p>En nuestros estantes no encontrarás solo *best-sellers* fáciles. Encontrarás la densidad filosófica, el laberinto metafísico de Borges, la honestidad brutal de Idea Vilariño y el humor ácido de Ibargüengoitia, nuestro paisano. Creemos que hay un valor immenso en confrontar la complejidad de la existencia, en leer a autores que, como nosotros, han mirado al abismo.</p>
 
             <blockquote>
                 "explícame con tus ojos lo que significa
@@ -113,6 +113,16 @@
     </div>
     <!-- Fin del Modal -->
 
+    <!-- Botón de Ambiente (Poema) -->
+    <button id="ambience-btn" class="ambience-btn" aria-label="Activar poema">
+        <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5.14v14l11-7-11-7z"/>
+        </svg>
+        <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+    </button>
+
 
     <!-- Footer (consistente con las otras páginas) -->
     <footer class="main-footer">
@@ -122,7 +132,7 @@
     <!-- SCRIPT GLOBAL DE NAVEGACIÓN (para hamburguesa y login) -->
     <script id="global-nav-script">
         document.addEventListener('DOMContentLoaded', () => {
-            // --- 1. Lógica del Menú Hamburguesa ---
+            // Lógica del Menú Hamburguesa
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
             
@@ -134,17 +144,15 @@
                 });
             }
 
-            // --- 2. Lógica del Modal de Login (para botones de nav) ---
+            // Lógica del Modal de Login
             const openLoginModalBtns = document.querySelectorAll('#nav-login-btn, #nav-login-btn-mobile');
             const closeLoginModalBtn = document.getElementById('close-login-modal');
             const loginModal = document.getElementById('login-modal');
 
             if (loginModal) {
-                // Abrir modal
                 openLoginModalBtns.forEach(btn => {
                     btn.addEventListener('click', () => {
                         loginModal.style.display = 'flex';
-                        // Si el menú móvil está abierto, cerrarlo
                         if (mobileNavOverlay && mobileNavOverlay.classList.contains('open')) {
                             hamburgerBtn.classList.remove('open');
                             mobileNavOverlay.classList.remove('open');
@@ -152,17 +160,64 @@
                         }
                     });
                 });
-                // Cerrar con 'x'
                 closeLoginModalBtn.addEventListener('click', () => {
                     loginModal.style.display = 'none';
                 });
-                // Cerrar haciendo clic fuera
                 loginModal.addEventListener('click', (e) => {
                     if (e.target === loginModal) {
                         loginModal.style.display = 'none';
                     }
                 });
             }
+        });
+    </script>
+    
+    <!-- SCRIPT DE AMBIENTE (CON AUDIO MP3) -->
+    <script id="ambience-script">
+        document.addEventListener('DOMContentLoaded', () => {
+            const ambienceBtn = document.getElementById('ambience-btn');
+            if (!ambienceBtn) return; 
+
+            // Configuración del Audio
+            // CAMBIA ESTA RUTA por la ubicación de tu archivo MP3
+            const audio = new Audio('resources/tributo.mp3'); // Audio específico para esta página
+            audio.loop = true; 
+            
+            let isPlaying = false;
+            const playIcon = document.getElementById('play-icon');
+            const pauseIcon = document.getElementById('pause-icon');
+
+            ambienceBtn.addEventListener('click', async () => {
+                if (!isPlaying) {
+                    try {
+                        await audio.play();
+                    } catch (err) {
+                        console.error("Error al reproducir audio:", err);
+                    }
+
+                    // Crear y mostrar efecto de viñeta
+                    const overlay = document.createElement('div');
+                    overlay.className = 'poetic-overlay';
+                    document.body.appendChild(overlay);
+
+                    isPlaying = true;
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
+                    ambienceBtn.setAttribute('aria-label', 'Detener poema');
+                } else {
+                    audio.pause();
+
+                    const overlay = document.querySelector('.poetic-overlay');
+                    if (overlay) {
+                        overlay.remove();
+                    }
+
+                    isPlaying = false;
+                    playIcon.style.display = 'block';
+                    pauseIcon.style.display = 'none';
+                    ambienceBtn.setAttribute('aria-label', 'Activar poema');
+                }
+            });
         });
     </script>
 </body>

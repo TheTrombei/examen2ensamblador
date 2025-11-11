@@ -14,11 +14,12 @@
     font-family: var(--font-titulos);
     font-size: 3.5rem;
     font-weight: 700;
-    color: var(--acento-primario); /* CAMBIO */
+    color: var(--acento-primario); /* CAMBIO: Color fucsia */
     border-bottom: 1px solid var(--color-borde);
     padding-bottom: 1.5rem;
     margin-bottom: 2.5rem;
     text-align: center;
+    text-shadow: 0 0 10px rgba(224, 26, 131, 0.3); /* CAMBIO: Brillo */
 }
 
 .about-text p {
@@ -41,7 +42,7 @@
     font-size: 1.8rem;
     line-height: 1.6;
     color: var(--color-texto);
-    border-left: 4px solid var(--acento-primario); /* CAMBIO */
+    border-left: 4px solid var(--acento-primario); 
     padding-left: 2rem;
     margin: 3rem 1rem; 
 }
@@ -51,7 +52,7 @@
     border-left-color: var(--color-acento-azul);
 }
 .about-text blockquote:nth-of-type(2) {
-    border-left-color: var(--color-acento-rojo);
+    border-left-color: var(--color-acento-fucsia);
 }
 .about-text blockquote:nth-of-type(3) {
     border-left-color: var(--color-acento-verde);

@@ -26,16 +26,14 @@
             <div class="logo">La Librería de Cuévano</div>
         </a>
         
-        <!-- Navegación de Escritorio -->
         <nav class="main-nav">
             <a href="libros.html">Libros</a>
-            <a href="blog.html" style="color: var(--color-acento-1);">Blog</a>
+            <a href="blog.html" style="color: var(--acento-primario);">Blog</a>
             <a href="quienes-somos.html">Quienes Somos</a>
             <a href="contactanos.html">Contáctanos</a>
             <button id="nav-login-btn" class="nav-login-btn">Inicia Sesión</button>
         </nav>
         
-        <!-- ¡NUEVO! Botón de Hamburguesa -->
         <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú">
             <span></span>
             <span></span>
@@ -43,7 +41,6 @@
         </button>
     </header>
     
-    <!-- ¡NUEVO! Panel de Navegación Móvil -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
         <nav class="mobile-nav-links">
             <a href="libros.html">Libros</a> 
@@ -54,30 +51,28 @@
         </nav>
     </div>
 
-    <!-- Contenido del Artículo -->
     <div class="article-wrapper">
         
-        <!-- ¡NUEVO! Botón para volver al blog -->
         <a href="blog.html" class="back-to-blog-link">
             &larr; Volver a La Cifra Oscura
         </a>
 
         <header class="article-header">
-            <!-- Título y metadatos se cargarán con JS -->
             <h1 class="article-title" id="article-title">Cargando título...</h1>
             <div class="article-meta">
                 Por <span id="article-meta-author"></span>
                 el <span id="article-meta-date"></span>
             </div>
+            
+            <audio id="article-audio-player" class="article-audio-player" controls>
+                Tu navegador no soporta el elemento de audio.
+            </audio>
         </header>
 
-        <!-- Cuerpo principal del artículo -->
         <div class="article-body" id="article-body-content">
-            <!-- El contenido del artículo se cargará aquí -->
             <p>Cargando contenido...</p>
         </div>
 
-        <!-- Sección para participar/comentar -->
         <section class="participate-section">
             <h2>Participa en la Discusión</h2>
             <p>Para dejar un comentario, unirte al debate o proponer tu propio análisis, necesitas ser miembro de la comunidad de Cuévano.</p>
@@ -85,7 +80,6 @@
         </section>
     </div>
 
-    <!-- MODAL DE INICIO DE SESIÓN / REGISTRO -->
     <div id="login-modal" class="login-modal-overlay">
         <div class="login-modal-content">
             <button id="close-login-modal" class="login-modal-close">&times;</button>
@@ -104,10 +98,7 @@
             </form>
         </div>
     </div>
-    <!-- Fin del Modal -->
 
-
-    <!-- Footer -->
     <footer class="main-footer">
         <p>La Librería de Cuévano © 2025 | Literatura para el alma futura.</p>
     </footer>
@@ -115,7 +106,7 @@
     <!-- SCRIPT GLOBAL DE NAVEGACIÓN (para hamburguesa y login) -->
     <script id="global-nav-script">
         document.addEventListener('DOMContentLoaded', () => {
-            // --- 1. Lógica del Menú Hamburguesa ---
+            // Lógica del Menú Hamburguesa
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
             
@@ -127,18 +118,15 @@
                 });
             }
 
-            // --- 2. Lógica del Modal de Login (para botones de nav) ---
-            // ¡OJO! Aquí el querySelectorAll es diferente
+            // Lógica del Modal de Login
             const openLoginModalBtns = document.querySelectorAll('#nav-login-btn, #nav-login-btn-mobile, #open-login-modal');
             const closeLoginModalBtn = document.getElementById('close-login-modal');
             const loginModal = document.getElementById('login-modal');
 
             if (loginModal) {
-                // Abrir modal
                 openLoginModalBtns.forEach(btn => {
                     btn.addEventListener('click', () => {
                         loginModal.style.display = 'flex';
-                        // Si el menú móvil está abierto, cerrarlo
                         if (mobileNavOverlay && mobileNavOverlay.classList.contains('open')) {
                             hamburgerBtn.classList.remove('open');
                             mobileNavOverlay.classList.remove('open');
@@ -146,11 +134,9 @@
                         }
                     });
                 });
-                // Cerrar con 'x'
                 closeLoginModalBtn.addEventListener('click', () => {
                     loginModal.style.display = 'none';
                 });
-                // Cerrar haciendo clic fuera
                 loginModal.addEventListener('click', (e) => {
                     if (e.target === loginModal) {
                         loginModal.style.display = 'none';
@@ -160,14 +146,16 @@
         });
     </script>
 
-    <!-- SCRIPT PARA CARGAR ARTÍCULO -->
+    <!-- SCRIPT PARA CARGAR ARTÍCULO Y AUDIO -->
     <script>
-        // --- BASE DE DATOS DE ARTÍCULOS (SIMULADA) ---
+        // --- BASE DE DATOS DE ARTÍCULOS (¡RUTAS CORREGIDAS!) ---
         const postDatabase = {
             'plath': {
                 title: "El arte de morir: La intensidad de 'Ariel' de Sylvia Plath",
                 author: "La Cifra Oscura",
                 date: "7 de noviembre, 2025",
+                // CAMBIO DE RUTA:
+                audioSrc: "resources/ariel.mp3", 
                 content: `
                     <p>Pocos poemarios queman con la intensidad de 'Ariel'. Escrito en los últimos y febriles meses de su vida, el libro póstumo de Sylvia Plath no es solo una confesión; es una transfiguración. Plath toma el material autobiográfico de su dolor, su ira y su desesperación, y lo funde en un lenguaje mítico, creando una obra que trasciende la simple catarsis.</p>
                     
@@ -194,6 +182,8 @@
                 title: "'La Tregua': La melancolía de lo cotidiano en Mario Benedetti",
                 author: "La Cifra Oscura",
                 date: "5 de noviembre, 2025",
+                // CAMBIO DE RUTA:
+                audioSrc: "resources/trato.mp3",
                 content: `
                     <p>Mario Benedetti nunca necesitó de grandes tragedias épicas. Su genio residía en encontrar lo trascendente en lo gris, en la rutina de la oficina y en los cafés de Montevideo. 'La Tregua', escrita en forma de diario, es quizás el ejemplo más puro de esto.</p>
                     
@@ -217,6 +207,8 @@
                 title: "'Ya no': La poética del adiós en Idea Vilariño",
                 author: "La Cifra Oscura",
                 date: "3 de noviembre, 2025",
+                // CAMBIO DE RUTA:
+                audioSrc: "resources/ideas.mp3",
                 content: `
                     <p>Si la poesía de Pizarnik es un descenso a la noche y la de Plath una explosión, la de Idea Vilariño es un corte limpio. Sus 'Poemas de Amor' son una colección de heridas expuestas, escritas con una economía de lenguaje que desarma.</p>
 
@@ -243,22 +235,28 @@
             const postKey = params.get('post');
             
             const post = postDatabase[postKey];
+            const audioPlayer = document.getElementById('article-audio-player');
 
             if (post) {
-                // Cambiar el título de la página
                 document.title = `${post.title} | La Librería de Cuévano`;
-                
-                // Inyectar el contenido
                 document.getElementById('article-title').textContent = post.title;
                 document.getElementById('article-meta-author').textContent = post.author;
                 document.getElementById('article-meta-date').textContent = post.date;
                 document.getElementById('article-body-content').innerHTML = post.content;
+
+                if (post.audioSrc && audioPlayer) {
+                    audioPlayer.src = post.audioSrc;
+                } else {
+                    audioPlayer.style.display = 'none'; 
+                }
+
             } else {
-                // Post no encontrado
                 document.getElementById('article-title').textContent = "Artículo no encontrado";
                 document.getElementById('article-body-content').innerHTML = "<p>El artículo que buscas no existe o ha sido movido. <a href='blog.html' style='color: var(--color-acento-1)'>Volver al blog</a>.</p>";
+                audioPlayer.style.display = 'none';
             }
         });
     </script>
+
 </body>
 </html>

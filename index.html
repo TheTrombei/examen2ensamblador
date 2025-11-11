@@ -34,7 +34,7 @@
             <button id="nav-login-btn" class="nav-login-btn">Inicia Sesión</button>
         </nav>
         
-        <!-- ¡NUEVO! Botón de Hamburguesa -->
+        <!-- Botón de Hamburguesa -->
         <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú">
             <span></span>
             <span></span>
@@ -42,21 +42,19 @@
         </button>
     </header>
 
-    <!-- ¡NUEVO! Panel de Navegación Móvil -->
+    <!-- Panel de Navegación Móvil -->
     <div class="mobile-nav-overlay" id="mobile-nav-overlay">
         <nav class="mobile-nav-links">
             <a href="libros.html">Libros</a> 
             <a href="blog.html">Blog</a>
             <a href="quienes-somos.html">Quienes Somos</a>
             <a href="contactanos.html">Contáctanos</a>
-            <a href="#club">Club de Lectura</a> <!-- El club sigue aquí en móvil -->
+            <a href="#club">Club de Lectura</a> 
             <button id="nav-login-btn-mobile" class="nav-login-btn">Inicia Sesión</button>
         </nav>
     </div>
 
     <main>
-        <!-- ... (Contenido del carrusel y resto de la página sin cambios) ... -->
-        
         <!-- SECCIÓN 1: CARRUSEL DE PANTALLA COMPLETA -->
         <section class="hero-carousel">
             
@@ -147,31 +145,25 @@
 
         </section>
         
-        <!-- Indicador para que el usuario sepa que debe deslizar -->
         <div class="scroll-indicator">
             <span>Desliza para explorar</span>
         </div>
 
-        <!-- INICIO DEL CONTENIDO DEBAJO DEL CARRUSEL -->
         <div class="main-content-wrapper">
             
-            <!-- SECCIÓN 3: CATEGORÍAS -->
             <section id="comprar" class="content-section"> 
                 <h2 class="section-title">Nuestras Categorías</h2>
                 <div class="category-grid">
-                    <!-- Categoría 1: Poesía -->
                     <div class="category-card">
-                        <img src="resources/91f20c86-58f8-413f-890d-3b84fed748c9.jpg"Sección Poesía">
+                        <img src="resources/91f20c86-58f8-413f-890d-3b84fed748c9.jpg" alt="Sección Poesía">
                         <h3>Poesía</h3>
                         <a href="libros.html?filter=poesia" class="cta-button secondary">Ver colección</a> 
                     </div>
-                    <!-- Categoría 2: Novela -->
                     <div class="category-card">
                         <img src="resources/9e7a4412-9071-4ff8-85ce-f569cebbf9f9.jpg" alt="Sección Novela">
                         <h3>Novela</h3>
                         <a href="libros.html?filter=novela" class="cta-button secondary">Ver colección</a> 
                     </div>
-                    <!-- Categoría 3: Sátira y Ensayo -->
                     <div class="category-card">
                         <img src="resources/409e61d9-21df-468f-9aed-d00509d7468b.jpg" alt="Sección Sátira y Ensayo">
                         <h3>Sátira y Ensayo</h3>
@@ -180,7 +172,6 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN 4: CLUB DE LECTURA (Se mantiene la sección, pero no el link del nav) -->
             <section id="club" class="content-section alternate-bg">
                 <h2 class="section-title">Club de Lectura</h2>
                 <div class="two-column-layout">
@@ -199,7 +190,6 @@
         </div>
     </main>
     
-    <!-- HTML DEL MODAL (POP-UP) CLUB -->
     <div id="club-modal" class="modal-overlay">
         <div class="modal-content">
             <button id="close-modal-btn" class="modal-close">&times;</button>
@@ -214,7 +204,6 @@
         </div>
     </div>
     
-    <!-- HTML DEL MODAL DE LOGIN -->
     <div id="login-modal" class="login-modal-overlay">
         <div class="login-modal-content">
             <button id="close-login-modal" class="login-modal-close">&times;</button>
@@ -233,16 +222,15 @@
             </form>
         </div>
     </div>
-    <!-- Fin del Modal -->
 
     <footer class="main-footer">
         <p>La Librería de Cuévano © 2025 | Literatura para el alma futura.</p>
     </footer>
 
-    <!-- ¡NUEVO! SCRIPT GLOBAL DE NAVEGACIÓN (para hamburguesa y login) -->
+    <!-- SCRIPT GLOBAL DE NAVEGACIÓN (para hamburguesa y login) -->
     <script id="global-nav-script">
         document.addEventListener('DOMContentLoaded', () => {
-            // --- 1. Lógica del Menú Hamburguesa ---
+            // Lógica del Menú Hamburguesa
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
             
@@ -254,18 +242,15 @@
                 });
             }
 
-            // --- 2. Lógica del Modal de Login (para botones de nav) ---
-            // Selecciona ambos botones de login (desktop y móvil)
+            // Lógica del Modal de Login
             const openLoginModalBtns = document.querySelectorAll('#nav-login-btn, #nav-login-btn-mobile');
             const closeLoginModalBtn = document.getElementById('close-login-modal');
             const loginModal = document.getElementById('login-modal');
 
             if (loginModal) {
-                // Abrir modal
                 openLoginModalBtns.forEach(btn => {
                     btn.addEventListener('click', () => {
                         loginModal.style.display = 'flex';
-                        // Si el menú móvil está abierto, cerrarlo
                         if (mobileNavOverlay && mobileNavOverlay.classList.contains('open')) {
                             hamburgerBtn.classList.remove('open');
                             mobileNavOverlay.classList.remove('open');
@@ -273,11 +258,9 @@
                         }
                     });
                 });
-                // Cerrar con 'x'
                 closeLoginModalBtn.addEventListener('click', () => {
                     loginModal.style.display = 'none';
                 });
-                // Cerrar haciendo clic fuera
                 loginModal.addEventListener('click', (e) => {
                     if (e.target === loginModal) {
                         loginModal.style.display = 'none';
@@ -290,7 +273,7 @@
 
     <!-- JAVASCRIPT DE LA PÁGINA (Modal del Club y Carrusel) -->
     <script>
-        // --- 1. SCRIPT PARA EL MODAL (POP-UP) CLUB ---
+        // SCRIPT PARA EL MODAL (POP-UP) CLUB
         const openModalBtn = document.getElementById('open-modal-btn');
         const closeModalBtn = document.getElementById('close-modal-btn');
         const modal = document.getElementById('club-modal');
@@ -324,7 +307,7 @@
             });
         }
 
-        // --- 2. SCRIPT PARA EL CARRUSEL AUTOMÁTICO ---
+        // SCRIPT PARA EL CARRUSEL AUTOMÁTICO
         document.addEventListener('DOMContentLoaded', () => {
             const carousel = document.querySelector('.hero-carousel');
             if (!carousel) return; 
