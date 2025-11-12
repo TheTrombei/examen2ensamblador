@@ -147,7 +147,6 @@
 .article-audio-player {
     width: 100%;
     margin-top: 2.5rem;
-    /* Aplica un filtro para que coincida con el tema oscuro */
     filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg) brightness(0.7) contrast(1.1);
 }
 

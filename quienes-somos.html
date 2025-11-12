@@ -124,7 +124,6 @@
     </button>
 
 
-    <!-- Footer (consistente con las otras páginas) -->
     <footer class="main-footer">
         <p>La Librería de Cuévano © 2025 | Literatura para el alma futura.</p>
     </footer>
@@ -178,9 +177,7 @@
             const ambienceBtn = document.getElementById('ambience-btn');
             if (!ambienceBtn) return; 
 
-            // Configuración del Audio
-            // CAMBIA ESTA RUTA por la ubicación de tu archivo MP3
-            const audio = new Audio('resources/tributo.mp3'); // Audio específico para esta página
+            const audio = new Audio('resources/tributo.mp3'); 
             audio.loop = true; 
             
             let isPlaying = false;

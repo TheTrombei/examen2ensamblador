@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- Script de Tone.js eliminado -->
 </head>
 <body>
 
@@ -457,10 +456,8 @@
             const ambienceBtn = document.getElementById('ambience-btn');
             if (!ambienceBtn) return; 
 
-            // --- 1. Configuración del Audio ---
-            // ¡CAMBIO! Reemplaza esta ruta con la ubicación de tu archivo MP3
             const audio = new Audio('resources/note.mp3');
-            audio.loop = true; // Para que el sonido se repita
+            audio.loop = true; 
             
             let isPlaying = false;
             const playIcon = document.getElementById('play-icon');

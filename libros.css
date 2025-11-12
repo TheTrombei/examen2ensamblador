@@ -1,6 +1,5 @@
 /* --- ESTILOS PARA LA PÁGINA DE TIENDA (libros.html) --- */
 
-/* Contenedor principal de la tienda (Sidebar + Grid) */
 .store-wrapper {
     display: grid;
     grid-template-columns: 280px 1fr; 
@@ -116,12 +115,9 @@
     width: 100%; 
 }
 
-/* --- Cuadrícula de Libros --- */
 .book-grid-container {
-    /* Esta es la columna derecha */
 }
 
-/* Botón para mostrar filtros en móvil */
 .mobile-filter-btn {
     display: none; 
     margin-bottom: 2rem;
@@ -269,7 +265,7 @@
     height: auto;
     border-radius: 8px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    cursor: pointer; /* ¡NUEVO! Indica que se puede hacer clic */
+    cursor: pointer; 
     transition: transform 0.3s ease;
 }
 .book-modal-image img:hover {
@@ -323,9 +319,9 @@
 
 /* --- ¡NUEVO! Estilos para el Lightbox de la Imagen --- */
 .image-lightbox-overlay {
-    display: none; /* Oculto por defecto */
+    display: none; 
     position: fixed;
-    z-index: 250; /* Por encima del modal de libro */
+    z-index: 250; 
     left: 0;
     top: 0;
     width: 100%;
@@ -341,7 +337,7 @@
     display: block;
     max-width: 90vw;
     max-height: 90vh;
-    box-shadow: 0 0 40px rgba(224, 26, 131, 0.5); /* Brillo fucsia */
+    box-shadow: 0 0 40px rgba(224, 26, 131, 0.5); 
 }
 
 

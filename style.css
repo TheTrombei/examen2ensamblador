@@ -691,8 +691,6 @@ body.nav-open {
     color: var(--color-texto-sec);
     font-size: 0.9rem;
 }
-
-/* --- Botón de Ambiente (Poema/Sonido) --- */
 .ambience-btn {
     position: fixed;
     bottom: 1.5rem;
@@ -713,7 +711,7 @@ body.nav-open {
 .ambience-btn:hover {
     background-color: var(--color-acento-azul);
     filter: brightness(1.2);
-    transform: scale(1.1); /* ¡Efecto pop! */
+    transform: scale(1.1); 
 }
 .ambience-btn svg {
     width: 28px;
@@ -721,7 +719,6 @@ body.nav-open {
     fill: var(--color-texto);
 }
 
-/* --- Efecto Poético (Viñeta) --- */
 .poetic-overlay {
     position: fixed;
     top: 0;
