@@ -145,30 +145,44 @@
         <div class="main-content-wrapper">
             
             <section id="comprar" class="content-section"> 
-                <h2 class="section-title">Nuestras Categorías</h2>
-                <div class="category-grid">
-                    <div class="category-card">
-                        <img src="resources/91f20c86-58f8-413f-890d-3b84fed748c9.jpg" alt="Sección Poesía">
-                        <h3>Poesía</h3>
-                        <a href="libros.html?filter=poesia" class="cta-button secondary">Ver colección</a> 
-                    </div>
-                    <div class="category-card">
-                        <img src="resources/9e7a4412-9071-4ff8-85ce-f569cebbf9f9.jpg" alt="Sección Novela">
-                        <h3>Novela</h3>
-                        <a href="libros.html?filter=novela" class="cta-button secondary">Ver colección</a> 
-                    </div>
-                    <div class="category-card">
-                        <img src="resources/409e61d9-21df-468f-9aed-d00509d7468b.jpg" alt="Sección Sátira y Ensayo">
-                        <h3>Sátira y Ensayo</h3>
-                        <a href="libros.html?filter=satira" class="cta-button secondary">Ver colección</a> 
+                
+                <!-- Bootstrap 1: clase "container" para centrar el contenido -->
+                <div class="container">
+                    <h2 class="section-title">Nuestras Categorías</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="category-card">
+                                <img src="resources/91f20c86-58f8-413f-890d-3b84fed748c9.jpg" class="img-fluid" alt="Sección Poesía">
+                                <h3>Poesía</h3>
+                                <a href="libros.html?filter=poesia" class="cta-button secondary">Ver colección</a> 
+                            </div>
+                        </div>
+
+                        <!-- Bootstrap 3: Repetimos la columna -->
+                        <div class="col-md-4">
+                            <div class="category-card">
+                                <img src="resources/9e7a4412-9071-4ff8-85ce-f569cebbf9f9.jpg" class="img-fluid" alt="Sección Novela">
+                                <h3>Novela</h3>
+                                <a href="libros.html?filter=novela" class="cta-button secondary">Ver colección</a> 
+                            </div>
+                        </div>
+                        
+                        <!-- Bootstrap 3: Repetimos la columna -->
+                        <div class="col-md-4">
+                            <div class="category-card">
+                                <img src="resources/409e61d9-21df-468f-9aed-d00509d7468b.jpg" class="img-fluid" alt="Sección Sátira y Ensayo">
+                                <h3>Sátira y Ensayo</h3>
+                                <a href="libros.html?filter=satira" class="cta-button secondary">Ver colección</a> 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-
             <section id="club" class="content-section alternate-bg">
+                
+                <!-- Bootstrap 1: "container" para centrar y alinear el contenido -->
                 <div class="container"> 
                     <h2 class="section-title">Club de Lectura</h2>
-                    
                     <div class="row align-items-center">
                         <div class="col-lg-7">
                             <div class="column-text">
@@ -179,6 +193,7 @@
                                 <button id="open-modal-btn" class="btn btn-outline-light btn-lg">Registrarse al Club</button>
                             </div>
                         </div>
+                        
                         <div class="col-lg-5">
                             <div class="column-image">
                                 <img src="resources/rui.jpg" class="img-fluid rounded" alt="Club de Lectura: Estas ruinas que ves">
@@ -191,38 +206,55 @@
         </div>
     </main>
     
-    <div id="club-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button id="close-modal-btn" class="modal-close">&times;</button>
-            <h3>Club de Lectura</h3>
-            <p>Pon tu correo para recibir las invitaciones a Meet y a las reuniones presenciales.</p>
-            
-            <form id="modal-form" class="modal-form">
-                <label for="modal-email">Correo Electrónico</label>
-                <input type="email" id="modal-email" name="email" placeholder="tu.correo@ejemplo.com" required>
-                <button type="submit" class="cta-button">Suscribirme</button>
-            </form>
+    <!-- Bootstrap 6 modal -->
+    <div class="modal fade" id="club-modal" tabindex="-1" aria-labelledby="clubModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="clubModalLabel">Club de Lectura</h3>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <p>Pon tu correo para recibir las invitaciones a Meet y a las reuniones presenciales.</p>
+                    
+                    <form id="modal-form" class="modal-form">
+                        <label for="modal-email">Correo Electrónico</label>
+                        <input type="email" id="modal-email" name="email" placeholder="tu.correo@ejemplo.com" required>
+                        <button type="submit" class="cta-button">Suscribirme</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+
     
-    <div id="login-modal" class="login-modal-overlay">
-        <div class="login-modal-content">
-            <button id="close-login-modal" class="login-modal-close">&times;</button>
-            <h3>Únete a La Cifra Oscura</h3>
-            <p>Inicia sesión o regístrate para ser parte de la comunidad, guardar tus libros favoritos y participar en las discusiones.</p>
-            
-            <form class="login-form">
-                <label for="login-email">Correo Electrónico</label>
-                <input type="email" id="login-email" name="email" required>
-                
-                <label for="login-pass">Contraseña</label>
-                <input type="password" id="login-pass" name="password" required>
-                
-                <button type="submit" class="cta-button">Iniciar Sesión</button>
-                <button type="button" class="cta-button secondary">Registrarse</button>
-            </form>
+    <!-- Bootstrap 6 modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="login-modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="loginModalLabel">Únete a La Cifra Oscura</h3>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Inicia sesión o regístrate para ser parte de la comunidad, guardar tus libros favoritos y participar en las discusiones.</p>
+                    
+                    <form class="login-form">
+                        <label for="login-email">Correo Electrónico</label>
+                        <input type="email" id="login-email" name="email" required>
+                        
+                        <label for="login-pass">Contraseña</label>
+                        <input type="password" id="login-pass" name="password" required>
+                        
+                        <button type="submit" class="cta-button">Iniciar Sesión</button>
+                        <button type="button" class="cta-button secondary">Registrarse</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+
 
     <footer class="main-footer">
         <p>La Librería de Cuévano © 2025 | Literatura para el alma futura.</p>
@@ -243,59 +275,54 @@
                 });
             }
 
+            // 1. Instancia del Modal de Bootstrap
+            const loginModalEl = document.getElementById('login-modal');
+            const loginModal = new bootstrap.Modal(loginModalEl);
+            
+            // 2. Seleccionamos TODOS los botones que deben abrirlo
             const openLoginModalBtns = document.querySelectorAll('#nav-login-btn, #nav-login-btn-mobile');
-            const closeLoginModalBtn = document.getElementById('close-login-modal');
-            const loginModal = document.getElementById('login-modal');
 
-            if (loginModal) {
-                openLoginModalBtns.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        loginModal.style.display = 'flex';
-                        if (mobileNavOverlay && mobileNavOverlay.classList.contains('open')) {
-                            hamburgerBtn.classList.remove('open');
-                            mobileNavOverlay.classList.remove('open');
-                            document.body.classList.remove('nav-open');
-                        }
-                    });
-                });
-                closeLoginModalBtn.addEventListener('click', () => {
-                    loginModal.style.display = 'none';
-                });
-                loginModal.addEventListener('click', (e) => {
-                    if (e.target === loginModal) {
-                        loginModal.style.display = 'none';
+            openLoginModalBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 4.método .show() de Bootstrap
+                    loginModal.show();
+                    
+                    if (mobileNavOverlay && mobileNavOverlay.classList.contains('open')) {
+                        hamburgerBtn.classList.remove('open');
+                        mobileNavOverlay.classList.remove('open');
+                        document.body.classList.remove('nav-open');
                     }
                 });
-            }
+            });
         });
     </script>
 
 
+    <!-- SCRIPT DE PÁGINA (Modificado para Bootstrap) -->
     <script>
+        // --- Lógica  del Club 
         const openModalBtn = document.getElementById('open-modal-btn');
-        const closeModalBtn = document.getElementById('close-modal-btn');
-        const modal = document.getElementById('club-modal');
+        const clubModalEl = document.getElementById('club-modal');
+        const clubModal = new bootstrap.Modal(clubModalEl);
+
         const modalForm = document.getElementById('modal-form');
 
-        if (openModalBtn && modal) {
+        if (openModalBtn && clubModal) {
             openModalBtn.addEventListener('click', () => {
-                modal.style.display = 'flex';
+                clubModal.show();
             });
-            closeModalBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
+            
+
             modalForm.addEventListener('submit', (e) => {
                 e.preventDefault(); 
                 const email = document.getElementById('modal-email').value;
                 console.log(`Correo registrado: ${email}`);
                 modalForm.innerHTML = `<p style="color: var(--color-texto-sec); text-align: center;">¡Gracias por suscribirte con ${email}!</p>`;
+                
                 setTimeout(() => {
-                    modal.style.display = 'none';
+                    // 3. método .hide() de Bootstrap para cerrar
+                    clubModal.hide(); 
+                    
                     modalForm.innerHTML = `
                         <label for="modal-email">Correo Electrónico</label>
                         <input type="email" id="modal-email" name="email" placeholder="tu.correo@ejemplo.com" required>
